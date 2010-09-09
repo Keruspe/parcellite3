@@ -49,7 +49,8 @@ read_history ()
       /* Malloc according to the size of the item */
       gchar* item = (gchar*)g_malloc(size + 1);
       /* Read item and add ending character */
-      fread(item, size, 1, history_file);
+      if (! fread(item, size, 1, history_file))
+      	break;
       item[size] = '\0';
       /* Prepend item and read next size */
       history = g_slist_prepend(history, item);
@@ -86,13 +87,13 @@ save_history()
        * to file followed by the element data itself
        */
       GString* item = g_string_new((gchar*)element->data);
-      fwrite(&(item->len), 4, 1, history_file);
-      fputs(item->str, history_file);
+      if(fwrite(&(item->len), 4, 1, history_file))
+      	fputs(item->str, history_file);
       g_string_free(item, TRUE);
     }
     /* Write 0 to indicate end of file */
     gint end = 0;
-    fwrite(&end, 4, 1, history_file);
+    if (fwrite(&end, 4, 1, history_file)); /* silent warning */
     fclose(history_file);
   }
 }

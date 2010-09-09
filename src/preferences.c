@@ -179,26 +179,32 @@ read_actions()
     GtkTreeIter row_iter;
     /* Read the size of the first item */
     gint size;
-    fread(&size, 4, 1, actions_file);
+    if (! fread(&size, 4, 1, actions_file))
+    	goto finish;
     /* Continue reading until size is 0 */
     while (size != 0)
     {
       /* Read name */
       gchar* name = (gchar*)g_malloc(size + 1);
-      fread(name, size, 1, actions_file);
+      if (! fread(name, size, 1, actions_file))
+      	break;
       name[size] = '\0';
-      fread(&size, 4, 1, actions_file);
+      if(! fread(&size, 4, 1, actions_file))
+      	break;
       /* Read command */
       gchar* command = (gchar*)g_malloc(size + 1);
-      fread(command, size, 1, actions_file);
+      if(! fread(command, size, 1, actions_file))
+      	break;
       command[size] = '\0';
-      fread(&size, 4, 1, actions_file);
+      if(! fread(&size, 4, 1, actions_file))
+      	break;
       /* Append the read action */
       gtk_list_store_append(actions_list, &row_iter);
       gtk_list_store_set(actions_list, &row_iter, 0, name, 1, command, -1);
       g_free(name);
       g_free(command);
     }
+  finish:
     fclose(actions_file);
   }
 }
@@ -240,10 +246,10 @@ save_actions()
         else
         {
           /* Save action */
-          fwrite(&(s_name->len), 4, 1, actions_file);
-          fputs(s_name->str, actions_file);
-          fwrite(&(s_command->len), 4, 1, actions_file);
-          fputs(s_command->str, actions_file);
+          if (fwrite(&(s_name->len), 4, 1, actions_file))
+          	fputs(s_name->str, actions_file);
+          if(fwrite(&(s_command->len), 4, 1, actions_file))
+          	fputs(s_command->str, actions_file);
           /* Free strings */
           g_string_free(s_name, TRUE);
           g_string_free(s_command, TRUE);
@@ -253,7 +259,7 @@ save_actions()
     }
     /* End of file write */
     gint end = 0;
-    fwrite(&end, 4, 1, actions_file);
+    if(fwrite(&end, 4, 1, actions_file)); /* silent warning */
     fclose(actions_file);
   }
 }

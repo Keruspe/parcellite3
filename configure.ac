@@ -10,6 +10,8 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([src/main.c])
 AM_CONFIG_HEADER([config.h])
 
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+
 # -------------------------------------------------------------------------------
 # Gettext.
 # -------------------------------------------------------------------------------
@@ -42,8 +44,7 @@ AC_PROG_MAKE_SET()
 # -------------------------------------------------------------------------------
 # Checks for libraries.
 # -------------------------------------------------------------------------------
-# AC_CHECK_LIB(pthread, pthread_create)
-AM_PATH_GTK_2_0(2.10.0, [], AC_MSG_ERROR(Requirement not met: gtk >= 2.10.0))
+AM_PATH_GTK_3_0(2.90.6, [], AC_MSG_ERROR(Requirement not met: gtk >= 2.90.6))
 AM_PATH_GLIB_2_0(2.14.0, [], AC_MSG_ERROR(Requirement not met: glib >= 2.14.0))
 
 # -------------------------------------------------------------------------------

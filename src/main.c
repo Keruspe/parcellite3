@@ -205,7 +205,7 @@ action_exit(GPid pid, gint status, gpointer data)
   if (!prefs.no_icon)
   {
     gtk_status_icon_set_from_stock((GtkStatusIcon*)status_icon, GTK_STOCK_PASTE);
-    gtk_status_icon_set_tooltip((GtkStatusIcon*)status_icon, _("Clipboard Manager"));
+    gtk_status_icon_set_tooltip_text((GtkStatusIcon*)status_icon, _("Clipboard Manager"));
   }
   actions_lock = FALSE;
 }
@@ -219,7 +219,7 @@ action_selected(GtkButton *button, gpointer user_data)
   if (!prefs.no_icon)
   {
     gtk_status_icon_set_from_stock((GtkStatusIcon*)status_icon, GTK_STOCK_EXECUTE);
-    gtk_status_icon_set_tooltip((GtkStatusIcon*)status_icon, _("Executing action..."));
+    gtk_status_icon_set_tooltip_text((GtkStatusIcon*)status_icon, _("Executing action..."));
   }
   
   /* Insert clipboard into command (user_data), and prepare it for execution */
@@ -283,7 +283,7 @@ edit_selected(GtkMenuItem *menu_item, gpointer user_data)
     gtk_scrolled_window_set_policy((GtkScrolledWindow*)scrolled_window,
                                    GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
     
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), scrolled_window, TRUE, TRUE, 2);
+    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog))), scrolled_window, TRUE, TRUE, 2);
     GtkWidget* text_view = gtk_text_view_new_with_buffer(clipboard_buffer);
     gtk_text_view_set_left_margin((GtkTextView*)text_view, 2);
     gtk_text_view_set_right_margin((GtkTextView*)text_view, 2);
@@ -311,7 +311,7 @@ static void
 item_selected(GtkMenuItem *menu_item, gpointer user_data)
 {
   /* Get the text from the right element and set as clipboard */
-  GSList* element = g_slist_nth(history, (guint)user_data);
+  GSList* element = g_slist_nth(history, (guint) user_data);
   gtk_clipboard_set_text(clipboard, (gchar*)element->data, -1);
   gtk_clipboard_set_text(primary, (gchar*)element->data, -1);
 }
@@ -390,7 +390,7 @@ show_about_dialog(GtkMenuItem *menu_item, gpointer user_data)
     gtk_window_set_icon((GtkWindow*)about_dialog,
                         gtk_widget_render_icon(about_dialog, GTK_STOCK_ABOUT, GTK_ICON_SIZE_MENU, NULL));
     
-    gtk_about_dialog_set_name((GtkAboutDialog*)about_dialog, "Parcellite");
+    gtk_about_dialog_set_program_name((GtkAboutDialog*)about_dialog, "Parcellite");
     #ifdef HAVE_CONFIG_H
     gtk_about_dialog_set_version((GtkAboutDialog*)about_dialog, VERSION);
     #endif
@@ -507,7 +507,8 @@ show_actions_menu(gpointer data)
   if (actions_file)
   {
     gint size;
-    fread(&size, 4, 1, actions_file);
+    if (! fread(&size, 4, 1, actions_file))
+    	goto finish;
     /* Check if actions file is empty */
     if (!size)
     {
@@ -521,21 +522,26 @@ show_actions_menu(gpointer data)
     {
       /* Read name */
       gchar* name = (gchar*)g_malloc(size + 1);
-      fread(name, size, 1, actions_file);
+      if (! fread(name, size, 1, actions_file))
+      	break;
       name[size] = '\0';
       menu_item = gtk_menu_item_new_with_label(name);
       g_free(name);
-      fread(&size, 4, 1, actions_file);
+      if (! fread(&size, 4, 1, actions_file))
+      	break;
       /* Read command */
       gchar* command = (gchar*)g_malloc(size + 1);
-      fread(command, size, 1, actions_file);
+      if (! fread(command, size, 1, actions_file))
+      	break;
       command[size] = '\0';
-      fread(&size, 4, 1, actions_file);
+      if (! fread(&size, 4, 1, actions_file))
+      	break;
       /* Append the action */
       gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
       g_signal_connect((GObject*)menu_item,        "activate",
                        (GCallback)action_selected, (gpointer)command);      
     }
+  finish:
     fclose(actions_file);
   }
   else
@@ -782,7 +788,7 @@ parcellite_init()
   if (!prefs.no_icon)
   {
     status_icon = gtk_status_icon_new_from_stock(GTK_STOCK_PASTE);
-    gtk_status_icon_set_tooltip((GtkStatusIcon*)status_icon, _("Clipboard Manager"));
+    gtk_status_icon_set_tooltip_text((GtkStatusIcon*)status_icon, _("Clipboard Manager"));
     g_signal_connect((GObject*)status_icon, "activate", (GCallback)status_icon_clicked, NULL);
     g_signal_connect((GObject*)status_icon, "popup-menu", (GCallback)show_parcellite_menu, NULL);
   }
