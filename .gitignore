@@ -1,0 +1,11 @@
+config.guess
+config.rpath
+config.status
+config.sub
+depcomp
+install-sh
+intltool-extract
+intltool-merge
+intltool-update
+Makefile.in
+missing
