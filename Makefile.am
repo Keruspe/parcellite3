@@ -4,7 +4,7 @@ SUBDIRS = data doc src po
 
 DISTCLEANFILES = *.bak *.log *~
 
-EXTRA_DIST = \
+EXTRA_DIST = config.rpath m4/ChangeLog  \
 	m4 \
 	autogen.sh \
 	config.rpath \
