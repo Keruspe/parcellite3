@@ -399,7 +399,7 @@ show_preferences(gint tab)
   
   /* Create the dialog */
   GtkWidget* dialog = gtk_dialog_new_with_buttons(_("Preferences"),     NULL,
-                                                   (GTK_DIALOG_MODAL  + GTK_DIALOG_NO_SEPARATOR),
+                                                    GTK_DIALOG_MODAL,
                                                     GTK_STOCK_CANCEL,   GTK_RESPONSE_REJECT,
                                                     GTK_STOCK_OK,       GTK_RESPONSE_ACCEPT, NULL);
   

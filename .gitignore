@@ -30,5 +30,6 @@ po/quot.sed
 po/remove-potcdate.sin
 po/Rules-quot
 po/stamp-it
+POTFILES
 src/parcellite
 stamp-h1

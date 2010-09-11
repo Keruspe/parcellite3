@@ -2,7 +2,7 @@
 # Autoconf/automake.
 # -------------------------------------------------------------------------------
 AC_PREREQ([2.5])
-AC_INIT([parcellite], [svn], [xyhthyx@gmail.com])
+AC_INIT([parcellite], [0.93], [Marc-Antoine@Perennou.com])
 AM_INIT_AUTOMAKE([AC_PACKAGE_TARNAME()], [AC_PACKAGE_VERSION()])
 
 AC_CONFIG_MACRO_DIR([m4])
@@ -44,7 +44,7 @@ AC_PROG_MAKE_SET()
 # -------------------------------------------------------------------------------
 # Checks for libraries.
 # -------------------------------------------------------------------------------
-AM_PATH_GTK_3_0(2.90.6, [], AC_MSG_ERROR(Requirement not met: gtk >= 2.90.6))
+AM_PATH_GTK_3_0(2.90.7, [], AC_MSG_ERROR(Requirement not met: gtk >= 2.90.6))
 AM_PATH_GLIB_2_0(2.14.0, [], AC_MSG_ERROR(Requirement not met: glib >= 2.14.0))
 
 # -------------------------------------------------------------------------------

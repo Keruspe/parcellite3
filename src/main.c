@@ -80,7 +80,7 @@ item_check(gpointer data)
   else
   {
     GdkModifierType button_state;
-    gdk_window_get_pointer(NULL, NULL, NULL, &button_state);
+    gdk_window_get_pointer(GDK_WINDOW(gdk_get_default_root_window()), NULL, NULL, &button_state);
     /* Proceed if mouse button not being held */
     if ((primary_temp != NULL) && !(button_state & GDK_BUTTON1_MASK))
     {
@@ -269,7 +269,7 @@ edit_selected(GtkMenuItem *menu_item, gpointer user_data)
     
     /* Create the dialog */
     GtkWidget* dialog = gtk_dialog_new_with_buttons(_("Editing Clipboard"), NULL,
-                                                   (GTK_DIALOG_MODAL   +    GTK_DIALOG_NO_SEPARATOR),
+                                                    GTK_DIALOG_MODAL,
                                                     GTK_STOCK_CANCEL,       GTK_RESPONSE_REJECT,
                                                     GTK_STOCK_OK,           GTK_RESPONSE_ACCEPT, NULL);
     
