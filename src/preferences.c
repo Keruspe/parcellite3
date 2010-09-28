@@ -394,7 +394,7 @@ show_preferences(gint tab)
             *alignment, *hbox,
             *vbox;
   
-  GtkObject *adjustment;
+  GObject *adjustment;
   GtkTreeViewColumn *tree_column;
   
   /* Create the dialog */
