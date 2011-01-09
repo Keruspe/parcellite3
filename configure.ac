@@ -62,7 +62,7 @@ AC_C_CONST()
 # -------------------------------------------------------------------------------
 AC_TYPE_SIGNAL()
 
-AC_CONFIG_FILES([Makefile
+AC_CONFIG_FILES([Makefile po/Makefile.in
                  doc/Makefile
                  src/Makefile
                  data/Makefile])

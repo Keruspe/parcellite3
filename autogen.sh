@@ -12,7 +12,7 @@ if test "$GETTEXTIZE"; then
 	echo "Creating $dr/aclocal.m4 ..."
 	test -r aclocal.m4 || touch aclocal.m4
 	echo "Running $GETTEXTIZE...  Ignore non-fatal messages."
-	echo "no" | $GETTEXTIZE --force --copy
+	while true; do echo -e '\n'; done | $GETTEXTIZE -f --no-changelog
 	echo "Making aclocal.m4 writable ..."
 	test -r aclocal.m4 && chmod u+w aclocal.m4
 fi
