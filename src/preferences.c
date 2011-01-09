@@ -373,14 +373,14 @@ delete_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
 /* Called when a cell is edited */
 static void
 edit_action(GtkCellRendererText *renderer, gchar *path,
-            gchar *new_text,               gpointer cell)
+            gchar *new_text,               gint cell)
 {
   GtkTreeIter sel_iter;
   /* Check if selected */
   if (gtk_tree_selection_get_selected(actions_selection, NULL, &sel_iter))
   {
     /* Apply changes */
-    gtk_list_store_set(actions_list, &sel_iter, (gint)cell, new_text, -1);
+    gtk_list_store_set(actions_list, &sel_iter, cell, new_text, -1);
   }
 }
 
@@ -394,7 +394,7 @@ show_preferences(gint tab)
             *alignment, *hbox,
             *vbox;
   
-  GObject *adjustment;
+  GtkAdjustment *adjustment;
   GtkTreeViewColumn *tree_column;
   
   /* Create the dialog */
@@ -462,7 +462,7 @@ show_preferences(gint tab)
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
   gtk_box_pack_start((GtkBox*)hbox, label, FALSE, FALSE, 0);
   adjustment = gtk_adjustment_new(25, 5, 100, 1, 10, 0);
-  history_spin = gtk_spin_button_new((GtkAdjustment*)adjustment, 0.0, 0);
+  history_spin = gtk_spin_button_new(adjustment, 0.0, 0);
   gtk_spin_button_set_update_policy((GtkSpinButton*)history_spin, GTK_UPDATE_IF_VALID);
   gtk_box_pack_start((GtkBox*)hbox, history_spin, FALSE, FALSE, 0);
   gtk_box_pack_start((GtkBox*)vbox_behavior, frame, FALSE, FALSE, 0);
@@ -512,7 +512,7 @@ show_preferences(gint tab)
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
   gtk_box_pack_start((GtkBox*)hbox, label, FALSE, FALSE, 0);
   adjustment = gtk_adjustment_new(50, 25, 75, 1, 5, 0);
-  charlength_spin = gtk_spin_button_new((GtkAdjustment*)adjustment, 0.0, 0);
+  charlength_spin = gtk_spin_button_new(adjustment, 0.0, 0);
   gtk_spin_button_set_update_policy((GtkSpinButton*)charlength_spin, GTK_UPDATE_IF_VALID);
   gtk_box_pack_start((GtkBox*)hbox, charlength_spin, FALSE, FALSE, 0);
   gtk_box_pack_start((GtkBox*)vbox_display, frame, FALSE, FALSE, 0);
@@ -533,10 +533,10 @@ show_preferences(gint tab)
   label = gtk_label_new(_("Omit items in the:"));
   gtk_misc_set_alignment((GtkMisc*)label, 0.0, 0.50);
   gtk_box_pack_start((GtkBox*)hbox, label, FALSE, FALSE, 0);
-  ellipsize_combo = gtk_combo_box_new_text();
-  gtk_combo_box_append_text((GtkComboBox*)ellipsize_combo, _("Beginning"));
-  gtk_combo_box_append_text((GtkComboBox*)ellipsize_combo, _("Middle"));
-  gtk_combo_box_append_text((GtkComboBox*)ellipsize_combo, _("End"));
+  ellipsize_combo = gtk_combo_box_text_new();
+  gtk_combo_box_text_append_text((GtkComboBoxText*)ellipsize_combo, _("Beginning"));
+  gtk_combo_box_text_append_text((GtkComboBoxText*)ellipsize_combo, _("Middle"));
+  gtk_combo_box_text_append_text((GtkComboBoxText*)ellipsize_combo, _("End"));
   gtk_box_pack_start((GtkBox*)hbox, ellipsize_combo, FALSE, FALSE, 0);
   gtk_box_pack_start((GtkBox*)vbox_display, frame, FALSE, FALSE, 0);
   
@@ -555,8 +555,8 @@ show_preferences(gint tab)
   
   /* Build the actions treeview */
   GtkWidget* scrolled_window = gtk_scrolled_window_new(
-                               (GtkAdjustment*)gtk_adjustment_new(0, 0, 0, 0, 0, 0),
-                               (GtkAdjustment*)gtk_adjustment_new(0, 0, 0, 0, 0, 0));
+                               gtk_adjustment_new(0, 0, 0, 0, 0, 0),
+                               gtk_adjustment_new(0, 0, 0, 0, 0, 0));
   
   gtk_scrolled_window_set_policy((GtkScrolledWindow*)scrolled_window, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type((GtkScrolledWindow*)scrolled_window, GTK_SHADOW_ETCHED_OUT);

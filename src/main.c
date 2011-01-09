@@ -308,10 +308,10 @@ edit_selected(GtkMenuItem *menu_item, gpointer user_data)
 
 /* Called when an item is selected from history menu */
 static void
-item_selected(GtkMenuItem *menu_item, gpointer user_data)
+item_selected(GtkMenuItem *menu_item, guint user_data)
 {
   /* Get the text from the right element and set as clipboard */
-  GSList* element = g_slist_nth(history, (guint) user_data);
+  GSList* element = g_slist_nth(history, user_data);
   gtk_clipboard_set_text(clipboard, (gchar*)element->data, -1);
   gtk_clipboard_set_text(primary, (gchar*)element->data, -1);
 }
