@@ -2,7 +2,7 @@
 # Autoconf/automake.
 # -------------------------------------------------------------------------------
 AC_PREREQ([2.5])
-AC_INIT([parcellite], [0.93], [Marc-Antoine@Perennou.com])
+AC_INIT([parcellite], [scm], [Marc-Antoine@Perennou.com])
 AM_INIT_AUTOMAKE([AC_PACKAGE_TARNAME()], [AC_PACKAGE_VERSION()])
 
 AC_CONFIG_MACRO_DIR([m4])
