@@ -8,54 +8,55 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-01 12:21-0500\n"
+"POT-Creation-Date: 2011-01-09 16:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/main.c:186 ../src/main.c:222
+#: ../src/main.c:188 ../src/main.c:225
 msgid "Executing action..."
 msgstr ""
 
-#: ../src/main.c:192 ../src/main.c:208 ../src/main.c:785
+#: ../src/main.c:194 ../src/main.c:210 ../src/main.c:804
 #: ../data/parcellite.desktop.in.h:1 ../data/parcellite-startup.desktop.in.h:1
 msgid "Clipboard Manager"
 msgstr ""
 
 #. Create the dialog
-#: ../src/main.c:271
+#: ../src/main.c:274
 msgid "Editing Clipboard"
 msgstr ""
 
-#: ../src/main.c:330
+#: ../src/main.c:333
 msgid "Clear the history?"
 msgstr ""
 
-#: ../src/main.c:398
+#: ../src/main.c:404
 msgid "Lightweight GTK+ clipboard manager."
 msgstr ""
 
-#: ../src/main.c:494
+#: ../src/main.c:500
 msgid "<b>None</b>"
 msgstr ""
 
 #. File contained no actions so adding empty
 #. File did not open so adding empty
 #. Nothing in history so adding empty
-#: ../src/main.c:515 ../src/main.c:544 ../src/main.c:669
+#: ../src/main.c:522 ../src/main.c:556 ../src/main.c:686
 msgid "Empty"
 msgstr ""
 
 #. Edit actions
-#: ../src/main.c:551
+#: ../src/main.c:563
 msgid "_Edit actions"
 msgstr ""
 
 #. Edit clipboard
-#: ../src/main.c:575
+#: ../src/main.c:587
 msgid "_Edit Clipboard"
 msgstr ""
 
@@ -92,144 +93,144 @@ msgstr ""
 #: ../src/utils.c:123
 msgid ""
 "Written by Gilberto \"Xyhthyx\" Miralla.\n"
-"Report bugs to <xyhthyx@gmail.com>."
+"Report bugs to <Marc-Antoine@Perennou.com>."
 msgstr ""
 
 #. Create the dialog
-#: ../src/preferences.c:395
+#: ../src/preferences.c:401
 msgid "Preferences"
 msgstr ""
 
-#: ../src/preferences.c:414
+#: ../src/preferences.c:420
 msgid "Behavior"
 msgstr ""
 
-#: ../src/preferences.c:422
+#: ../src/preferences.c:428
 msgid "<b>Clipboards</b>"
 msgstr ""
 
-#: ../src/preferences.c:429
+#: ../src/preferences.c:435
 msgid "Use _Copy (Ctrl-C)"
 msgstr ""
 
-#: ../src/preferences.c:432
+#: ../src/preferences.c:438
 msgid "Use _Primary (Selection)"
 msgstr ""
 
-#: ../src/preferences.c:435
+#: ../src/preferences.c:441
 msgid "S_ynchronize clipboards"
 msgstr ""
 
-#: ../src/preferences.c:443
+#: ../src/preferences.c:449
 msgid "<b>History</b>"
 msgstr ""
 
-#: ../src/preferences.c:450
+#: ../src/preferences.c:456
 msgid "_Save history"
 msgstr ""
 
-#: ../src/preferences.c:451
+#: ../src/preferences.c:457
 msgid "Save and restore history between sessions"
 msgstr ""
 
-#: ../src/preferences.c:455
+#: ../src/preferences.c:461
 msgid "Items in history:"
 msgstr ""
 
-#: ../src/preferences.c:468
+#: ../src/preferences.c:474
 msgid "<b>Miscellaneous</b>"
 msgstr ""
 
-#: ../src/preferences.c:475
+#: ../src/preferences.c:481
 msgid "Capture _hyperlinks only"
 msgstr ""
 
-#: ../src/preferences.c:477
+#: ../src/preferences.c:483
 msgid "C_onfirm before clearing history"
 msgstr ""
 
-#: ../src/preferences.c:484
+#: ../src/preferences.c:490
 msgid "Display"
 msgstr ""
 
-#: ../src/preferences.c:492
+#: ../src/preferences.c:498
 msgid "<b>Items</b>"
 msgstr ""
 
-#: ../src/preferences.c:499
+#: ../src/preferences.c:505
 msgid "Show in a _single line"
 msgstr ""
 
-#: ../src/preferences.c:501
+#: ../src/preferences.c:507
 msgid "Show in _reverse order"
 msgstr ""
 
-#: ../src/preferences.c:505
+#: ../src/preferences.c:511
 msgid "Character length of items:"
 msgstr ""
 
-#: ../src/preferences.c:518
+#: ../src/preferences.c:524
 msgid "<b>Omitting</b>"
 msgstr ""
 
-#: ../src/preferences.c:527
+#: ../src/preferences.c:533
 msgid "Omit items in the:"
 msgstr ""
 
-#: ../src/preferences.c:531
+#: ../src/preferences.c:537
 msgid "Beginning"
 msgstr ""
 
-#: ../src/preferences.c:532
+#: ../src/preferences.c:538
 msgid "Middle"
 msgstr ""
 
-#: ../src/preferences.c:533
+#: ../src/preferences.c:539
 msgid "End"
 msgstr ""
 
-#: ../src/preferences.c:540
+#: ../src/preferences.c:546
 msgid "Actions"
 msgstr ""
 
 #. Build the actions label
-#: ../src/preferences.c:545
+#: ../src/preferences.c:551
 msgid "Control-click Parcellite's tray icon to use actions"
 msgstr ""
 
-#: ../src/preferences.c:565
+#: ../src/preferences.c:573
 msgid "Action"
 msgstr ""
 
-#: ../src/preferences.c:572
+#: ../src/preferences.c:581
 msgid "Command"
 msgstr ""
 
-#: ../src/preferences.c:587
+#: ../src/preferences.c:596
 msgid "Add..."
 msgstr ""
 
-#: ../src/preferences.c:591
+#: ../src/preferences.c:600
 msgid "Remove"
 msgstr ""
 
-#: ../src/preferences.c:608
+#: ../src/preferences.c:617
 msgid "Hotkeys"
 msgstr ""
 
-#: ../src/preferences.c:616
+#: ../src/preferences.c:625
 msgid "<b>Hotkeys</b>"
 msgstr ""
 
-#: ../src/preferences.c:625
+#: ../src/preferences.c:634
 msgid "History key combination:"
 msgstr ""
 
-#: ../src/preferences.c:633
+#: ../src/preferences.c:642
 msgid "Actions key combination:"
 msgstr ""
 
-#: ../src/preferences.c:641
+#: ../src/preferences.c:650
 msgid "Menu key combination:"
 msgstr ""
 

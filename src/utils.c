@@ -121,7 +121,7 @@ parse_options(int argc, char* argv[])
   /* Set description */
   g_option_context_set_description(context,
                                  _("Written by Gilberto \"Xyhthyx\" Miralla.\n"
-                                   "Report bugs to <xyhthyx@gmail.com>."));
+                                   "Report bugs to <Marc-Antoine@Perennou.com>."));
   /* Add entries and parse options */
   g_option_context_add_main_entries(context, main_entries, NULL);
   g_option_context_parse(context, &argc, &argv, NULL);
