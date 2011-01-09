@@ -32,7 +32,8 @@
 #include "preferences.h"
 #include "parcellite-i18n.h"
 
-#define PARCELLITE_ICON "parcellite"
+/* #define PARCELLITE_ICON "parcellite" */
+#define PARCELLITE_ICON GTK_STOCK_PASTE
 
 static gchar* primary_text;
 static gchar* clipboard_text;
@@ -816,7 +817,7 @@ main(int argc, char *argv[])
   
   /* Initiate GTK+ */
   gtk_init(&argc, &argv);
-  
+
   /* Parse options and exit if returns TRUE */
   if (argc > 1)
   {
