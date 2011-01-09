@@ -214,6 +214,7 @@ action_exit(GPid pid, gint status, gpointer data)
 static void
 action_selected(GtkButton *button, gpointer user_data)
 {
+  printf("%s\n", (gchar*)user_data);
   /* Change icon and enable lock */
   actions_lock = TRUE;
   if (!prefs.no_icon)
@@ -308,10 +309,10 @@ edit_selected(GtkMenuItem *menu_item, gpointer user_data)
 
 /* Called when an item is selected from history menu */
 static void
-item_selected(GtkMenuItem *menu_item, gpointer user_data)
+item_selected(GtkMenuItem *menu_item, glong index)
 {
   /* Get the text from the right element and set as clipboard */
-  GSList* element = g_slist_nth(history, *(guint*)user_data);
+  GSList* element = g_slist_nth(history, index);
   gtk_clipboard_set_text(clipboard, (gchar*)element->data, -1);
   gtk_clipboard_set_text(primary, (gchar*)element->data, -1);
 }
@@ -590,7 +591,7 @@ show_history_menu(gpointer data)
   {
     /* Declare some variables */
     GSList* element;
-    guint element_number = 0;
+    glong element_number = 0;
     gchar* primary_temp = gtk_clipboard_wait_for_text(primary);
     gchar* clipboard_temp = gtk_clipboard_wait_for_text(clipboard);
     /* Reverse history if enabled */
@@ -634,7 +635,7 @@ show_history_menu(gpointer data)
       /* Make new item with ellipsized text */
       menu_item = gtk_menu_item_new_with_label(string->str);
       g_signal_connect((GObject*)menu_item,      "activate",
-                       (GCallback)item_selected, &element_number);
+                       (GCallback)item_selected, (gpointer)element_number);
       
       /* Modify menu item label properties */
       item_label = gtk_bin_get_child((GtkBin*)menu_item);
