@@ -373,14 +373,14 @@ delete_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
 /* Called when a cell is edited */
 static void
 edit_action(GtkCellRendererText *renderer, gchar *path,
-            gchar *new_text,               gint cell)
+            gchar *new_text,               gpointer cell)
 {
   GtkTreeIter sel_iter;
   /* Check if selected */
   if (gtk_tree_selection_get_selected(actions_selection, NULL, &sel_iter))
   {
     /* Apply changes */
-    gtk_list_store_set(actions_list, &sel_iter, cell, new_text, -1);
+    gtk_list_store_set(actions_list, &sel_iter, *(guint*)cell, new_text, -1);
   }
 }
 
@@ -565,16 +565,19 @@ show_preferences(gint tab)
   gtk_tree_view_set_rules_hint((GtkTreeView*)treeview, TRUE);
   actions_list = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_STRING);
   gtk_tree_view_set_model((GtkTreeView*)treeview, (GtkTreeModel*)actions_list);
+
+  guint left_cell = 0, right_cell = 1;
   GtkCellRenderer* name_renderer = gtk_cell_renderer_text_new();
   g_object_set(name_renderer, "editable", TRUE, NULL);
-  g_signal_connect((GObject*)name_renderer, "edited", (GCallback)edit_action, (gpointer)0);
+  g_signal_connect((GObject*)name_renderer, "edited", (GCallback)edit_action, &left_cell);
   tree_column = gtk_tree_view_column_new_with_attributes(_("Action"), name_renderer, "text", 0, NULL);
   gtk_tree_view_column_set_resizable(tree_column, TRUE);
   gtk_tree_view_append_column((GtkTreeView*)treeview, tree_column);
   GtkCellRenderer* command_renderer = gtk_cell_renderer_text_new();
   g_object_set(command_renderer, "editable", TRUE, NULL);
   g_object_set(command_renderer, "ellipsize-set", TRUE, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
-  g_signal_connect((GObject*)command_renderer, "edited", (GCallback)edit_action, (gpointer)1);
+  g_signal_connect((GObject*)command_renderer, "edited", (GCallback)edit_action, &right_cell);
+
   tree_column = gtk_tree_view_column_new_with_attributes(_("Command"), command_renderer, "text", 1, NULL);
   gtk_tree_view_column_set_expand(tree_column, TRUE);
   gtk_tree_view_append_column((GtkTreeView*)treeview, tree_column);

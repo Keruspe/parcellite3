@@ -308,10 +308,10 @@ edit_selected(GtkMenuItem *menu_item, gpointer user_data)
 
 /* Called when an item is selected from history menu */
 static void
-item_selected(GtkMenuItem *menu_item, guint user_data)
+item_selected(GtkMenuItem *menu_item, gpointer user_data)
 {
   /* Get the text from the right element and set as clipboard */
-  GSList* element = g_slist_nth(history, user_data);
+  GSList* element = g_slist_nth(history, *(guint*)user_data);
   gtk_clipboard_set_text(clipboard, (gchar*)element->data, -1);
   gtk_clipboard_set_text(primary, (gchar*)element->data, -1);
 }
@@ -539,7 +539,7 @@ show_actions_menu(gpointer data)
       /* Append the action */
       gtk_menu_shell_append((GtkMenuShell*)menu, menu_item);
       g_signal_connect((GObject*)menu_item,        "activate",
-                       (GCallback)action_selected, (gpointer)command);      
+                       (GCallback)action_selected, command);
     }
   finish:
     fclose(actions_file);
@@ -590,7 +590,7 @@ show_history_menu(gpointer data)
   {
     /* Declare some variables */
     GSList* element;
-    gint element_number = 0;
+    guint element_number = 0;
     gchar* primary_temp = gtk_clipboard_wait_for_text(primary);
     gchar* clipboard_temp = gtk_clipboard_wait_for_text(clipboard);
     /* Reverse history if enabled */
@@ -634,7 +634,7 @@ show_history_menu(gpointer data)
       /* Make new item with ellipsized text */
       menu_item = gtk_menu_item_new_with_label(string->str);
       g_signal_connect((GObject*)menu_item,      "activate",
-                       (GCallback)item_selected, (gpointer)element_number);
+                       (GCallback)item_selected, &element_number);
       
       /* Modify menu item label properties */
       item_label = gtk_bin_get_child((GtkBin*)menu_item);
