@@ -47,10 +47,8 @@ EXTRA_DIST = \
 
 CLEANFILES = \
   $(desktop_DATA) \
-  $(autostart_DATA) \
-  $(pixmap_DATA)
+  $(autostart_DATA)
 
 DISTCLEANFILES = \
   $(desktop_DATA) \
-  $(autostart_DATA) \
-  $(pixmap_DATA)
+  $(autostart_DATA)
