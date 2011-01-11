@@ -90,7 +90,7 @@ reset_daemon(gpointer data)
   timeout_id = g_timeout_add_full(G_PRIORITY_LOW,
                                   DAEMON_INTERVAL,
                                   (GSourceFunc)daemon_check,
-                                  NULL,
+                                  data,
                                   (GDestroyNotify)reset_daemon);
 }
 

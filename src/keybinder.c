@@ -30,7 +30,7 @@
 #ifdef DEBUG
 #  define TRACE(x) x
 #else
-#  define TRACE(x) do {} while (FALSE);
+#  define TRACE(x) do { x; } while (FALSE);
 #endif
 
 typedef struct _Binding {
@@ -214,7 +214,6 @@ filter_func (GdkXEvent *gdk_xevent, GdkEvent *event, gpointer data)
 static void 
 keymap_changed (GdkKeymap *map)
 {
-	GdkKeymap *keymap = gdk_keymap_get_default ();
 	GSList *iter;
 
 	TRACE (g_print ("Keymap changed! Regrabbing keys..."));
@@ -224,7 +223,7 @@ keymap_changed (GdkKeymap *map)
 		do_ungrab_key (binding);
 	}
 
-	lookup_ignorable_modifiers (keymap);
+	lookup_ignorable_modifiers (map);
 
 	for (iter = bindings; iter != NULL; iter = iter->next) {
 		Binding *binding = (Binding *) iter->data;
