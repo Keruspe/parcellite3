@@ -185,13 +185,13 @@ execute_action(void *command)
   if (!prefs.no_icon)
   {
   gtk_status_icon_set_from_stock((GtkStatusIcon*)status_icon, GTK_STOCK_EXECUTE);
-  gtk_status_icon_set_tooltip((GtkStatusIcon*)status_icon, _("Executing action..."));
+  gtk_status_icon_set_tooltip_text((GtkStatusIcon*)status_icon, _("Executing action..."));
   }
   system((gchar*)command);
   if (!prefs.no_icon)
   {
   gtk_status_icon_set_from_stock((GtkStatusIcon*)status_icon, PARCELLITE_ICON);
-  gtk_status_icon_set_tooltip((GtkStatusIcon*)status_icon, _("Clipboard Manager"));
+  gtk_status_icon_set_tooltip_text((GtkStatusIcon*)status_icon, _("Clipboard Manager"));
   }
   actions_lock = FALSE;
   g_free((gchar*)command);
@@ -629,7 +629,7 @@ show_history_menu(gpointer data)
         }
       }
       /* Remove control characters */
-      int i = 0;
+      unsigned int i = 0;
       while (i < string->len)
       { /** fix 100% CPU utilization for odd data. - bug 2976890 */
         gsize nline;

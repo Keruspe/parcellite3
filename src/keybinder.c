@@ -78,7 +78,7 @@ grab_ungrab_with_ignorable_modifiers (GdkWindow *rootwin,
 		caps_lock_mask | scroll_lock_mask,
 		num_lock_mask  | caps_lock_mask | scroll_lock_mask,
 	};
-	int i;
+	unsigned int i;
 
 	for (i = 0; i < G_N_ELEMENTS (mod_masks); i++) {
 		if (grab) {

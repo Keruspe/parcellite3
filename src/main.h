@@ -41,7 +41,7 @@ typedef struct
   
   gboolean  single_line;      /* Show in a single line */
   gboolean  reverse_history;  /* Show in reverse order */
-  gint      item_length;      /* Length of items */
+  guint      item_length;     /* Length of items */
   
   gint      ellipsize;        /* Omitting */
   

@@ -106,6 +106,10 @@ parse_options(int argc, char* argv[])
       NULL
     },
     {
+      NULL, '\0',
+      G_OPTION_FLAG_NO_ARG,
+      G_OPTION_ARG_NONE,
+      NULL, NULL,
       NULL
     }
   };

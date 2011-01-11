@@ -142,7 +142,7 @@ read_preferences()
     /* Check for errors and set default values if any */
     if ((!prefs.history_limit) || (prefs.history_limit > 100) || (prefs.history_limit < 0))
       prefs.history_limit = DEF_HISTORY_LIMIT;
-    if ((!prefs.item_length) || (prefs.item_length > 75) || (prefs.item_length < 0))
+    if ((!prefs.item_length) || (prefs.item_length > 75))
       prefs.item_length = DEF_ITEM_LENGTH;
     if ((!prefs.ellipsize) || (prefs.ellipsize > 3) || (prefs.ellipsize < 0))
       prefs.ellipsize = DEF_ELLIPSIZE;
@@ -259,7 +259,7 @@ save_actions()
     }
     /* End of file write */
     gint end = 0;
-    if(fwrite(&end, 4, 1, actions_file)); /* silent warning */
+    if(fwrite(&end, 4, 1, actions_file)) {} /* silent warning */
     fclose(actions_file);
   }
 }

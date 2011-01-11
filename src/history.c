@@ -93,7 +93,7 @@ save_history()
     }
     /* Write 0 to indicate end of file */
     gint end = 0;
-    if (fwrite(&end, 4, 1, history_file)); /* silent warning */
+    if (fwrite(&end, 4, 1, history_file)) {} /* silent warning */
     fclose(history_file);
   }
 }
