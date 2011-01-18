@@ -43,7 +43,7 @@ pixmap_DATA = $(app_icon_files)
 EXTRA_DIST = \
   $(desktop_in_file) \
   $(autostart_in_file) \
-  $(icons) 
+  $(app_icons_files) 
 
 CLEANFILES = \
   $(desktop_DATA) \
